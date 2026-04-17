@@ -68,7 +68,7 @@ class Menu() {
         do {
             val (opcion,fila,columna) = pedirAccion(filas,columnas)
             var continuar: Boolean
-            var victoria  = false
+            var victoria : Boolean
             if (opcion=="Abrir") {
                 continuar = juego.abriCasilla(fila,columna)
                 if (continuar){
