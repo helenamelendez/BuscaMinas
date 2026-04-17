@@ -96,10 +96,10 @@ class EntradaValidacion(){
 
 }
 fun main() {
-    var menu = Menu()
-    var (filas,columnas,minas) = menu.parametrosConfiguracion()
-    var tablero = Tablero(filas,columnas,minas)
-    var juego = Buscaminas(tablero)
+    val menu = Menu()
+    val (filas,columnas,minas) = menu.parametrosConfiguracion()
+    val tablero = Tablero(filas,columnas,minas)
+    val juego = Buscaminas(tablero)
     menu.imprimirTablero(juego)
     menu.jugar(juego,filas,columnas)
 
