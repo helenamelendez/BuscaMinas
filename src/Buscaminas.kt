@@ -1,8 +1,9 @@
 import kotlin.random.Random
 
-data class celda(var fila: Int,var columna: Int, var proximidad: Int,var visibilidad :Char)
+data class Celda(var fila: Int,var columna: Int, var proximidad: Int,var visibilidad :Char)
+
 data class Tablero(var filas: Int, var columnas: Int, var minas : Int){
-    var arrayCeldas = Array(filas){ Array<celda>(columnas) {celda(0,0,0,'?')} }
+    var arrayCeldas = Array(filas){ Array<Celda>(columnas) {Celda(0,0,0,'?')} }
     init {
         numerarCeldas()
         randomizarMinas()
@@ -48,7 +49,9 @@ data class Tablero(var filas: Int, var columnas: Int, var minas : Int){
     }
 }
 
-class Buscaminas(var tablero : Tablero) {
+class Buscaminas(t : Tablero) {
+   var tablero = t // No he podido aplicar bien el principio de ocultación
+
     private fun revelarCasillas(f: Int, c: Int) {
         if (f !in tablero.arrayCeldas.indices || c !in tablero.arrayCeldas[f].indices) return // Si no esta en rango, salir
         if (tablero.arrayCeldas[f][c].visibilidad != '?') return // Si ya fue revelada, salir
@@ -89,6 +92,9 @@ class Buscaminas(var tablero : Tablero) {
         if (tablero.arrayCeldas[f][c].visibilidad == '?'){
             tablero.arrayCeldas[f][c].visibilidad = 'B'
         }
+        else if (tablero.arrayCeldas[f][c].visibilidad == 'B'){
+            tablero.arrayCeldas[f][c].visibilidad = '?'
+        }
         return true
     }
     fun verificarVictoria(): Boolean{
@@ -101,5 +107,6 @@ class Buscaminas(var tablero : Tablero) {
         }
         return contador == tablero.minas
     }
+
 
 }
